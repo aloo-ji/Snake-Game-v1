@@ -4,7 +4,7 @@ Config = {
               'height': 600,
               'fps': 20,
               'bumper_size': 20,
-              'font': "/Users/Arnav/Dropbox/Code/Snake Game/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf",
+              'font': "BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf",
               'font_size': 21
     }
     ,'snake': {
