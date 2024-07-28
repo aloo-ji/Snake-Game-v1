@@ -4,7 +4,7 @@ import pygame
 pygame.init()
 pygame.display.set_caption('Credits')
 screen = pygame.display.set_mode((800, 600))
-font = pygame.font.Font("/Users/Zebra/OneDrive/Documents/StudentFiles/Arnav/Advanced Python (Pygame)/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf", 40)
+font = pygame.font.Font("BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf", 40)
 clock = pygame.time.Clock()
 
 def main():

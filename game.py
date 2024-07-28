@@ -208,14 +208,14 @@ class Game():
 
     def find_high_score(self):
 
-        self.file = open("/Users/Arnav/Dropbox/Code/Snake Game/high_score.txt", "r")
+        self.file = open("high_score.txt", "r")
 
         self.current_line = self.file.readline().rstrip("\n")
         self.current_line = int(self.current_line)
         self.high_score = self.current_line
 
     def add_high_score(self):
-        self.file = open("/Users/Arnav/Dropbox/Code/Snake Game/high_score.txt", "w")
+        self.file = open("high_score.txt", "w")
         self.file.write(str(self.high_score))
 
     def snake_movement_change(self):
