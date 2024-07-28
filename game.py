@@ -147,6 +147,31 @@ class Game():
 
     def instructions(self):
 
+        self.screen.fill(Config['colors']['light_blue'])
+        self.instructions_text_1 = self.font.render("Welcome to Snake! Use the arrow keys to move the snake around the open space and eat the apple!", True, Config['colors']['black'])
+        self.instructions_text_2 = self.font.render("There are only two rules you must follow when playing: don’t hit a wall and don’t bite your own tail.", True, Config['colors']['black'])
+        self.instructions_text_3 = self.font.render("Crashing into a wall or your tail will end the game immediately.", True, Config['colors']['black'])
+        self.instructions_text_4 = self.font.render("Your high score is calculated based on the number of apples you at.", True, Config['colors']['black'])
+        self.instructions_text_5 = self.font.render("You win the game when there is no more room for your snake to grow. Remember to have fun!", True, Config['colors']['black'])
+        
+        self.instructions_text_1_rect = self.instructions_text_1.get_rect(center = (Config['game']['width'] / 2, Config['game']['height'] / 2 - Config['game']['font_size'] * 2))
+        self.instructions_text_2_rect = self.instructions_text_2.get_rect(center = (Config['game']['width'] / 2, Config['game']['height'] / 2 - Config['game']['font_size']))
+        self.instructions_text_3_rect = self.instructions_text_3.get_rect(center = (Config['game']['width'] / 2, Config['game']['height'] / 2))
+        self.instructions_text_4_rect = self.instructions_text_4.get_rect(center = (Config['game']['width'] / 2, Config['game']['height'] / 2 + Config['game']['font_size']))
+        self.instructions_text_5_rect = self.instructions_text_5.get_rect(center = (Config['game']['width'] / 2, Config['game']['height'] / 2 + Config['game']['font_size'] * 2))
+        
+        self.return_to_main_menu_text = self.font.render("Return to Main Menu", True, Config['colors']['white'])
+        self.return_to_main_menu_button = self.return_to_main_menu_text.get_rect(topleft = (20,20))
+
+        pygame.draw.rect(self.screen, Config['colors']['black'], self.return_to_main_menu_button)
+        self.screen.blit(self.return_to_main_menu_text, self.return_to_main_menu_button)
+
+        self.screen.blit(self.instructions_text_1, self.instructions_text_1_rect)
+        self.screen.blit(self.instructions_text_2, self.instructions_text_2_rect)
+        self.screen.blit(self.instructions_text_3, self.instructions_text_3_rect)
+        self.screen.blit(self.instructions_text_4, self.instructions_text_4_rect)
+        self.screen.blit(self.instructions_text_5, self.instructions_text_5_rect)
+
         for self.event in pygame.event.get():
 
             if self.event.type == pygame.QUIT:
@@ -157,13 +182,17 @@ class Game():
                 self.in_credits = False
                 self.in_difficulty_selection = False
                 self.not_playing = False
+                self.game_is_over = False
 
-        self.screen.fill(Config['colors']['black'])
-        self.instructions_text = self.font.render("Welcome to Snake!\nUse the arrow keys to move the snake around the open space and eat the apple!\nThere are only two rules you must follow when playing: don’t hit a wall and don’t bite your own tail.\nCrashing into a wall or your tail will end the game immediately. Your high score is calculated based on the number of apples you at.\nYou win the game when there is no more room for your snake to grow. Remember to have fun!", True, Config['colors']['white'])
-        self.instructions_text_rect = self.instructions_text.get_rect(center = (Config['game']['width'] / 2, Config['game']['height'] / 2))
-        self.screen.blit(self.instructions_text, self.instructions_text_rect)
+
+            if self.event.type == pygame.MOUSEBUTTONDOWN:
+                self.position = pygame.mouse.get_pos()
+                if self.return_to_main_menu_button.collidepoint(self.position):
+                    self.in_instructions = False
+                    self.in_menu = True
 
         pygame.display.update()
+
 
     def credits(self):
 
